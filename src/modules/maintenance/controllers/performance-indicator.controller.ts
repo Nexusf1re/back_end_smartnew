@@ -1,10 +1,12 @@
-import { Controller, Get, Query, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Query, HttpException, HttpStatus, UsePipes } from '@nestjs/common';
 import { PerformanceIndicatorService } from '../services/performance-indicator.service';
 import {
   PerformanceIndicatorQueryDto,
   PerformanceIndicatorResponseDto,
+  performanceIndicatorQuerySchema,
 } from '../dtos/performance-indicator.dto';
 import { EnvironmentConfig } from '../../../config/environment.config';
+import { ZodValidationPipe } from '../../../common/pipes/zod-validation.pipe';
 
 @Controller('maintenance/reports')
 export class PerformanceIndicatorController {
@@ -14,6 +16,7 @@ export class PerformanceIndicatorController {
   ) {}
 
   @Get('performance-indicator')
+  @UsePipes(new ZodValidationPipe(performanceIndicatorQuerySchema))
   async getPerformanceIndicators(
     @Query() query: PerformanceIndicatorQueryDto,
   ): Promise<PerformanceIndicatorResponseDto> {

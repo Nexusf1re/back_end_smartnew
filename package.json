@@ -20,7 +20,8 @@
     "@nestjs/platform-express": "^10.3.0",
     "@prisma/client": "^5.8.0",
     "class-validator": "^0.14.0",
-    "dayjs": "^1.11.10"
+    "dayjs": "^1.11.10",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.3.2",
