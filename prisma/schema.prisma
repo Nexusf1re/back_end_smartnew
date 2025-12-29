@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model EscalaTrabalho {
+  id              Int     @id @default(autoincrement())
+  idEquipamento   Int     @map("id_equipamento")
+  dataProgramada  DateTime @db.Date @map("data_programada")
+  inicio          DateTime @db.Time @map("inicio")
+  termino         DateTime @db.Time @map("termino")
+  criadoEm        DateTime @default(now()) @map("criado_em")
+  atualizadoEm    DateTime @updatedAt @map("atualizado_em")
+
+  @@map("sofman_prospect_escala_trabalho")
+}
+
+model ApontamentoPardas {
+  id              Int     @id @default(autoincrement())
+  idOrdenServico  Int     @map("id_ordem_servico")
+  idEquipamento   Int     @map("id_equipamento")
+  dataHoraStop    DateTime @map("data_hora_stop")
+  dataHoraStart   DateTime? @map("data_hora_start")
+  criadoEm        DateTime @default(now()) @map("criado_em")
+  atualizadoEm    DateTime @updatedAt @map("atualizado_em")
+
+  @@map("sofman_apontamento_paradas")
+}
+
+model OrdemServico {
+  id              Int     @id @default(autoincrement())
+  idCliente       Int     @map("ID_cliente")
+  tipoManutencao  Int     @map("tipo_manutencao")
+  criadoEm        DateTime @default(now()) @map("criado_em")
+  atualizadoEm    DateTime @updatedAt @map("atualizado_em")
+
+  @@map("controle_de_ordens_de_servico")
+}
+
+model Equipamento {
+  id              Int     @id @default(autoincrement())
+  idCliente       Int     @map("ID_cliente")
+  idFamilia       Int     @map("ID_familia")
+  equipamentoCodigo String @map("equipamento_codigo")
+  descricao       String
+  criadoEm        DateTime @default(now()) @map("criado_em")
+  atualizadoEm    DateTime @updatedAt @map("atualizado_em")
+
+  @@map("cadastro_de_equipamentos")
+}
+
+model FamiliaEquipamento {
+  id              Int     @id @default(autoincrement())
+  idCliente       Int     @map("ID_cliente")
+  familia         String
+  criadoEm        DateTime @default(now()) @map("criado_em")
+  atualizadoEm    DateTime @updatedAt @map("atualizado_em")
+
+  @@map("cadastro_de_familias_de_equipamento")
+}
