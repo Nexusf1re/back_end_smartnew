@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MaintenanceModule } from './modules/maintenance/maintenance.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { EnvironmentConfig } from './config/environment.config';
 
 @Module({
@@ -9,6 +10,7 @@ import { EnvironmentConfig } from './config/environment.config';
       isGlobal: true,
       envFilePath: ['.env.local', '.env'],
     }),
+    AuthModule,
     MaintenanceModule,
   ],
   providers: [EnvironmentConfig],

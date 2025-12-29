@@ -41,11 +41,72 @@ A aplicação estará disponível em: **http://localhost:3001/api**
 
 ---
 
+## � Autenticação
+
+A API utiliza **JWT (JSON Web Token)** para proteger endpoints sensíveis.
+
+### Gerando um Token
+
+**POST** `/api/auth/token`
+
+```bash
+# PowerShell
+Invoke-RestMethod -Uri "http://localhost:3001/api/auth/token" -Method Post -ContentType "application/json" -Body "{}"
+
+# curl
+curl -X POST http://localhost:3001/api/auth/token -H "Content-Type: application/json" -d "{}"
+```
+
+**Resposta:**
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
+
+**Body (opcional):**
+```json
+{
+  "sub": "user-id",
+  "clientId": 405,
+  "expiresIn": "24h"
+}
+```
+
+### Usando o Token
+
+Adicione o header `Authorization: Bearer <token>` em requisições protegidas:
+
+```bash
+# PowerShell
+Invoke-RestMethod -Uri "http://localhost:3001/api/maintenance/reports/performance-indicator?startDate=2024-01-01&endDate=2024-12-31&typeMaintenance=1,2" -Method Get -Headers @{"Authorization"="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."}
+
+# curl
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." \
+  "http://localhost:3001/api/maintenance/reports/performance-indicator?startDate=2024-01-01&endDate=2024-12-31&typeMaintenance=1,2"
+```
+
+### Configuração JWT
+
+No arquivo `.env`:
+```env
+JWT_SECRET=your_secret_key       # Chave secreta (trocar em produção)
+JWT_EXPIRATION=24h               # Tempo de expiração do token
+```
+
+### Endpoints Protegidos
+
+- ✅ `/api/maintenance/reports/*` - Requer autenticação
+
+---
+
 ## 📡 Endpoints
 
 ### GET `/api/maintenance/reports/performance-indicator`
 
 Retorna indicadores de performance (KPIs) de manutenção agrupados por família de equipamentos.
+
+**🔒 Autenticação:** Requer Bearer Token
 
 #### Query Parameters
 

@@ -1,4 +1,4 @@
-import { Controller, Get, Query, HttpException, HttpStatus, UsePipes } from '@nestjs/common';
+import { Controller, Get, Query, HttpException, HttpStatus, UsePipes, UseGuards } from '@nestjs/common';
 import { PerformanceIndicatorService } from '../services/performance-indicator.service';
 import {
   PerformanceIndicatorQueryDto,
@@ -7,8 +7,10 @@ import {
 } from '../dtos/performance-indicator.dto';
 import { EnvironmentConfig } from '../../../config/environment.config';
 import { ZodValidationPipe } from '../../../common/pipes/zod-validation.pipe';
+import { JwtAuthGuard } from '../../../common/guards/jwt-auth.guard';
 
 @Controller('maintenance/reports')
+@UseGuards(JwtAuthGuard)
 export class PerformanceIndicatorController {
   constructor(
     private readonly service: PerformanceIndicatorService,
