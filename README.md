@@ -189,7 +189,7 @@ Retorna indicadores de performance (KPIs) de manutenção agrupados por família
 
 ---
 
-## 📊 KPIs Calculados
+## KPIs Calculados
 
 ### DF - Disponibilidade Física (%)
 ```
@@ -243,7 +243,7 @@ npm run prod            # Executa versão de produção
 
 ---
 
-## 🔧 Configuração
+## Configuração
 
 ### Variáveis de Ambiente
 
