@@ -2,7 +2,7 @@
 
 > API REST para cálculo e disponibilização de KPIs de manutenção industrial.
 
-## 📋 Stack
+## Stack
 
 | Tecnologia | Versão | Finalidade |
 |------------|--------|------------|
@@ -18,7 +18,7 @@
 ---
 
 
-## 🚀 Início Rápido
+## Início Rápido
 
 ### Pré-requisitos
 - Node.js 18+ e npm
@@ -42,7 +42,7 @@ npm run dev
 
 ---
 
-## 🏗️ Arquitetura e Padrões
+## Arquitetura e Padrões
 
 ### Estrutura de Pastas
 
@@ -67,15 +67,15 @@ src/
 ```
 
 ### Padrões Implementados
-- ✅ **Repository Pattern** - Separação de lógica de dados
-- ✅ **DTO Pattern** - Validação e tipagem de entrada/saída
-- ✅ **Dependency Injection** - Inversão de controle (NestJS)
-- ✅ **Guard Pattern** - Proteção de rotas com JWT
-- ✅ **Pipe Pattern** - Validação customizada com Zod
+- **Repository Pattern** - Separação de lógica de dados
+- **DTO Pattern** - Validação e tipagem de entrada/saída
+- **Dependency Injection** - Inversão de controle (NestJS)
+- **Guard Pattern** - Proteção de rotas com JWT
+- **Pipe Pattern** - Validação customizada com Zod
 
 ---
 
-## � Autenticação
+##  Autenticação
 
 A API utiliza **JWT (JSON Web Token)** para proteger endpoints sensíveis.
 
@@ -130,17 +130,17 @@ JWT_EXPIRATION=24h               # Tempo de expiração do token
 
 ### Endpoints Protegidos
 
-- ✅ `/api/maintenance/reports/*` - Requer autenticação
+- `/api/maintenance/reports/*` - Requer autenticação
 
 ---
 
-## 📡 Endpoints
+## Endpoints
 
 ### GET `/api/maintenance/reports/performance-indicator`
 
 Retorna indicadores de performance (KPIs) de manutenção agrupados por família de equipamentos.
 
-**🔒 Autenticação:** Requer Bearer Token
+** Autenticação:** Requer Bearer Token
 
 #### Query Parameters
 
@@ -214,7 +214,7 @@ Contagem total de ordens de serviço no período.
 
 ---
 
-## 🏗️ Arquitetura
+## Arquitetura
 
 ```
 src/
@@ -231,7 +231,7 @@ src/
 
 ---
 
-## 📦 Scripts
+## Scripts
 
 ```bash
 # Desenvolvimento
@@ -270,7 +270,7 @@ CLIENT_ID=405
 
 ---
 
-## ✅ Validação com Zod
+## Validação com Zod
 
 A API utiliza **Zod** para validação de dados de entrada com mensagens de erro claras e tipagem forte.
 
@@ -285,6 +285,8 @@ const performanceIndicatorQuerySchema = z.object({
   onlyWithDowntime: z.enum(['true', 'false']).optional(),
 });
 ```
+
+## Super Refine
 
 ### Regras de Validação
 
@@ -327,18 +329,18 @@ async getPerformanceIndicators(@Query() query: PerformanceIndicatorQueryDto) {
 
 ---
 
-## 🔐 Segurança
+## Segurança
 
-- ✅ Validação de entrada com Zod (schemas tipados)
-- ✅ Sanitização de queries (Prisma)
-- ✅ Autenticação JWT (Bearer Token)
-- ✅ CORS configurado
-- ✅ Tratamento de erros
-- ✅ Logging estruturado
+- Validação de entrada com Zod (schemas tipados)
+- Sanitização de queries (Prisma)
+- Autenticação JWT (Bearer Token)
+- CORS configurado
+- Tratamento de erros
+- Logging estruturado
 
 ---
 
-## 📚 Estrutura de Dados
+## Estrutura de Dados
 
 ### Tabelas Utilizadas
 
@@ -356,7 +358,7 @@ async getPerformanceIndicators(@Query() query: PerformanceIndicatorQueryDto) {
 
 ---
 
-## ✅ Testes
+## Testes
 
 ### Exemplo de Requisição
 
@@ -372,7 +374,7 @@ curl "http://localhost:3001/api/maintenance/reports/performance-indicator?startD
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Erro: "Connection refused"
 - Verifique se o banco de dados está acessível
@@ -385,7 +387,7 @@ curl "http://localhost:3001/api/maintenance/reports/performance-indicator?startD
 - Valide o formato das datas (YYYY-MM-DD)
 - Garanta que startDate < endDate
 
-## 🚢 Deploy
+## Deploy
 
 ### Build de Produção
 ```bash
@@ -406,7 +408,7 @@ CMD ["npm", "run", "prod"]
 
 ---
 
-## 📞 Suporte
+## Suporte
 
 Para dúvidas ou problemas, verifique:
 1. Logs da aplicação (console)
@@ -416,6 +418,6 @@ Para dúvidas ou problemas, verifique:
 
 ---
 
-## 📄 Licença
+## Licença
 
 Projeto desenvolvido por Matteus Abreu para fins de teste técnico.
