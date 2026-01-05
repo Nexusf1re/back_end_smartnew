@@ -2,14 +2,15 @@ import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { DateUtils } from '../../../common/utils/date.utils';
 
+// Define a estrutura de dados retornada pela query de cálculo de KPIs
 export interface KPICalculationResult {
-  Familia: string;
-  DF: number;
-  MTBF: number;
-  MTTR: number;
-  Paradas: number;
-  tempo_prev: number;
-  tempo_corretiva: number;
+  Familia: string;        // Nome da família de equipamentos
+  DF: number;             // Disponibilidade (%)
+  MTBF: number;           // Tempo médio entre falhas (horas)
+  MTTR: number;           // Tempo médio de reparo (horas)
+  Paradas: number;        // Quantidade de paradas
+  tempo_prev: number;     // Horas de manutenção preventiva
+  tempo_corretiva: number;// Horas de manutenção corretiva
 }
 
 @Injectable()

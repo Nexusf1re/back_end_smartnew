@@ -1,11 +1,15 @@
+// gera cliente prisma
 generator client {
   provider = "prisma-client-js"
 }
 
+// define banco de dados
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+// representando tabelas do DB com model
 
 model EscalaTrabalho {
   id              Int     @id @default(autoincrement())
